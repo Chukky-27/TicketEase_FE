@@ -145,7 +145,12 @@ const StyledFrame = styled.div`
   }
 `;
 
-export const Frame = ({ logout, ChangePassword, managerdetails }) => {
+export const Frame = ({
+  logout,
+  ChangePassword,
+  managerdetails,
+  personaldetails,
+}) => {
   return (
     <StyledFrame>
       <div className="overlap-group-2">
@@ -153,6 +158,7 @@ export const Frame = ({ logout, ChangePassword, managerdetails }) => {
           logout={logout}
           ChangePassword={ChangePassword}
           managerdetails={managerdetails}
+          personaldetails={personaldetails}
         />
       </div>
     </StyledFrame>

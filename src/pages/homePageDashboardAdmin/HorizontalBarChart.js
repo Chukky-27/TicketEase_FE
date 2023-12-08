@@ -47,7 +47,7 @@ const HorizontalBarChart = () => {
     labels: ['Total Boards', 'Total Projects', 'Total Tickets'],
     datasets: [
       {
-        label: 'Tracker',
+        label: 'Switch',
         data: [ticket, board, project],
         backgroundColor: ['#F7C450', '#14A800', '#009999'],
         tension: 0.1,

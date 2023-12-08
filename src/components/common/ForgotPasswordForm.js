@@ -93,6 +93,7 @@ function ForgotPasswordForm() {
             <Label>Email</Label>
             <Holder
               value={email}
+              style={{ paddingLeft: '10px' }}
               type="email"
               onChange={(e) => {
                 setEmail(e.target.value);
@@ -113,7 +114,7 @@ function ForgotPasswordForm() {
             }
           </Field>
           <ResetButton type="submit" disabled={!getIsFormValid()}>
-            Reset Password
+            Forgot Password
           </ResetButton>
         </Fieldset>
       </form>

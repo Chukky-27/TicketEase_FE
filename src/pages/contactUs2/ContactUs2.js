@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './ContactUs.css';
+import './ContactUs2.css';
 import Logo from '../../assets/images/Logo.svg';
 import Call from '../../assets/images/Call-Icon.svg';
 import Mail from '../../assets/images/Mail-Icon.svg';
@@ -10,11 +10,11 @@ import Swal from 'sweetalert2';
 
 //import Input from "../../components/common/Input";
 
-const ContactUs = () => {
+const ContactUs2Form = () => {
   const [companyName, setCompanyName] = useState('');
   const [businessEmail, setBusinessEmail] = useState('');
   const [companyDescription, setreasonToOnboard] = useState('');
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -56,7 +56,7 @@ const ContactUs = () => {
           timer: 1500, // Automatically close after 1.5 seconds
           position: 'top-end',
         });
-        navigate('/contactResponse');
+        // navigate('/contactResponse');
       } else {
         Swal.fire({
           icon: 'error',
@@ -85,9 +85,7 @@ const ContactUs = () => {
       <div className="left-partition"></div>
       <div className="middle-partition">
         <div className="logo">
-          <Link to="/Footer-header">
-            <img src={Logo} alt="Logo" width="100px" className="logo" />
-          </Link>
+          <img src={Logo} alt="Logo" width="100px" className="logo" />
         </div>
         <div className="card1">
           <p className="getStarted">Get Started ?</p>
@@ -168,4 +166,4 @@ const ContactUs = () => {
   );
 };
 
-export default ContactUs;
+export default ContactUs2Form;

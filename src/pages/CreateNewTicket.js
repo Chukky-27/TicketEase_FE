@@ -13,10 +13,11 @@ const MainContainer = styled.div`
   align-self: center;
   display: flex;
   flex-direction: column;
-  margin-left: 400px;
+  margin-left: 350px;
   margin-right: 100px;
-  margin-top: 239px;
+  margin-top: 130px;
   margin-bottom: 57px;
+  width: 75%;
 `;
 
 const Separator = styled.div`
@@ -27,14 +28,14 @@ const Separator = styled.div`
   margin-top: 6px;
   margin-bottom: 30px;
 `;
-const CreateNewTicket = (props) => {
+const CreateNewTicket = ({ props, handleCreateTicket }) => {
   return (
     <MainContainer>
       <HeaderArea />
       <Separator />
       <ImageArea />
       <NoTicketFound />
-      <NewTicketArea />
+      <NewTicketArea handleCreateTicket={handleCreateTicket} />
     </MainContainer>
   );
 };

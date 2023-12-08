@@ -59,7 +59,7 @@ function App() {
   const fetchManagerDetails = async () => {
     try {
       const res = await AxiosInstance.get(
-        '/managers/GetbyId?id=6db01435-a30c-44ae-9e23-95e1fecf0180'
+        `/managers/GetbyId?id=${localStorage.getItem('userId')}`
       );
       console.log(res.data);
       setUser(res.data.data);

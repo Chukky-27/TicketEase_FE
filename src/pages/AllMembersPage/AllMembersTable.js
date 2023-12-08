@@ -5,7 +5,8 @@ import styled from 'styled-components';
 const Container = styled.div`
   display: grid;
   grid-template-columns: 70% 30%;
-  gap: 180px;
+  gap: 220px;
+  margin-right: 16em;
 `;
 
 const AllMembersTable = ({
@@ -154,31 +155,31 @@ const AllMembersTable = ({
             </thead>
 
             <tbody>
-               {data &&
-                 data.map((item, index) => (
-                   <tr key={item.id}>
-                     <td style={tableCellStyle}>
-                       {(currentPage - 1) * itemsPerPage + index + 1}
-                     </td>
-                     <td style={tableCellStyle}>{item.firstName}</td>
-                     <td style={tableCellStyle}>{item.lastName}</td>
-                     <td style={tableCellStyle}>{item.email}</td>
-                     <td style={tableCellStyle}>{item.phoneNumber}</td>
-                     <td style={tableCellStyle}>
-                    <button
-                      style={{
-                        padding: '3px 8px',
-                        cursor: 'pointer',
-                        background: '#505F98',
-                        color: 'white',
-                      }}
-                      onClick={() => handleViewDetails(item)}
-                    >
-                      View
-                    </button>
-                  </td>
-                </tr>
-              ))}
+              {data &&
+                data.map((item, index) => (
+                  <tr key={item.id}>
+                    <td style={tableCellStyle}>
+                      {(currentPage - 1) * itemsPerPage + index + 1}
+                    </td>
+                    <td style={tableCellStyle}>{item.firstName}</td>
+                    <td style={tableCellStyle}>{item.lastName}</td>
+                    <td style={tableCellStyle}>{item.email}</td>
+                    <td style={tableCellStyle}>{item.phoneNumber}</td>
+                    <td style={tableCellStyle}>
+                      <button
+                        style={{
+                          padding: '3px 8px',
+                          cursor: 'pointer',
+                          background: '#505F98',
+                          color: 'white',
+                        }}
+                        onClick={() => handleViewDetails(item)}
+                      >
+                        View
+                      </button>
+                    </td>
+                  </tr>
+                ))}
             </tbody>
           </table>
 

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { FaArrowLeft } from 'react-icons/fa';
 import Table from './Table.jsx';
-import AxiosInstance from '../../Request/AxiosInstance.js';
 import { AxiosInstance2 } from '../../Request/AxiosInstance.js';
 import styled from 'styled-components';
 
@@ -30,27 +29,27 @@ const Show = styled.div`
   justify-content: space-between;
 `;
 
-const Sort = styled.h6`
-  // display: inline-flex;
-  display: flex;
-  padding: 8px 12px;
-  justify-content: center;
-  align-items: center;
-  gap: 4px;
-  border-radius: 4px;
-  background: rgba(80, 95, 152, 0.05);
-  color: #1d2125;
-  font-family: Mulish;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-  margin-left: 600px;
+// const Sort = styled.h6`
+//   // display: inline-flex;
+//   display: flex;
+//   padding: 8px 12px;
+//   justify-content: center;
+//   align-items: center;
+//   gap: 4px;
+//   border-radius: 4px;
+//   background: rgba(80, 95, 152, 0.05);
+//   color: #1d2125;
+//   font-family: Mulish;
+//   font-size: 14px;
+//   font-style: normal;
+//   font-weight: 400;
+//   line-height: normal;
+//   margin-left: 600px;
 
-  select {
-    margin-left: 20px;
-  }
-`;
+//   select {
+//     margin-left: 20px;
+//   }
+// `;
 const Leftarrow = styled.div`
   display: flex;
   align-items: center;
@@ -72,8 +71,10 @@ const AllProjects = ({ handleViewTickets, handleCreateTicket }) => {
   const getPojects = async () => {
     try {
       const res = await AxiosInstance2.get(
-        // `/Project/GetProjectsByBoardId?boardId=${localStorage.getItem('boardId')}&page=${currentPage}&perPage=${itemsPerPage}`
-        `/Project/GetProjectsByBoardId?boardId=16600789-f9b3-4ef6-bc80-289a4ef9fc86&page=${currentPage}&perPage=${itemsPerPage}`
+        `/Project/GetProjectsByBoardId?boardId=${localStorage.getItem(
+          'boardid'
+        )}&page=${currentPage}&perPage=${itemsPerPage}`
+        // `/Project/GetProjectsByBoardId?boardId=81a63952-4ce6-4a29-8e8c-b62aa1b6927a&page=${currentPage}&perPage=${itemsPerPage}`
       );
 
       const { data, totalCount } = res.data.data;
@@ -104,13 +105,13 @@ const AllProjects = ({ handleViewTickets, handleCreateTicket }) => {
 
           <Show>
             <MainTop>All Projects</MainTop>
-            <Sort>
+            {/* <Sort>
               Sort By{' '}
               <select>
                 <option value="all">All</option>
                 <option value="Newest">Newest</option>
               </select>
-            </Sort>
+            </Sort> */}
           </Show>
 
           <Table

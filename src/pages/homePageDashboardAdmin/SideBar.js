@@ -47,7 +47,7 @@ const MenuItem = styled.div`
   &.active {
     background-color: #505f98;
     color: #ffffff;
-    width: 211px;
+    width: 100%;
   }
 
   &:hover {

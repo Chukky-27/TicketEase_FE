@@ -1,6 +1,6 @@
 import React from 'react';
-import EditMemberData from './EditMemberData';
-import EditMemberHeader from '../../pages/EditMemberFolder/EditMemberHeader';
+import EditMemberData2 from './EditMemberData2';
+import EditMemberHeader2 from '../../pages/EditMemberFolder2/EditMemberHeader2';
 import styled from 'styled-components';
 
 const Container = styled.div`
@@ -21,9 +21,9 @@ const Form = styled.div`
 const PersonalInfo = () => {
   return (
     <Container>
-      <EditMemberHeader />
+      <EditMemberHeader2 />
       <Form>
-        <EditMemberData />
+        <EditMemberData2 />
       </Form>
     </Container>
   );

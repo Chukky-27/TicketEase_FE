@@ -19,9 +19,10 @@ const HorizontalBarChart2 = () => {
 
   useEffect(() => {
     // Define the API endpoint
-    const id = '6db01435-a30c-44ae-9e23-95e1fecf0180';
-    const apiUrl =
-      'https://localhost:7075/api/managers/GetManagerDetails/' + id;
+    // const id = localStorage.getItem('userid');
+    const apiUrl = `https://localhost:7075/api/managers/GetManagerDetails/${localStorage.getItem(
+      'userId'
+    )}`;
 
     // Make a GET request to the API
     fetch(apiUrl)
@@ -49,7 +50,7 @@ const HorizontalBarChart2 = () => {
     labels: ['Total Boards', 'Total Projects', 'Total Tickets'],
     datasets: [
       {
-        label: 'Tracker',
+        label: 'Switch',
         data: [board, project, ticket],
         backgroundColor: ['#F7C450', '#14A800', '#009999'],
         tension: 0.1,

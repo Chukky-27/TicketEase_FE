@@ -10,6 +10,7 @@ const ProfileDropdownContainer = styled.div`
   position: relative;
   align-items: flex-start;
   margin-top: -12px;
+  margin-left: -30px;
 `;
 
 const ProfileButton = styled.button`
@@ -95,6 +96,7 @@ export const ProfileDropdown = ({
   logout,
   ChangePassword,
   managerdetails,
+  personaldetails,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef(null);
@@ -135,7 +137,7 @@ export const ProfileDropdown = ({
     <ProfileDropdownContainer>
       <ProfileButton onClick={toggleDropdown}>
         <img
-          src={image}
+          src="https://icon-library.com/images/no-profile-picture-icon/no-profile-picture-icon-2.jpg"
           alt="Profile"
           style={{
             width: '30px',
@@ -144,36 +146,92 @@ export const ProfileDropdown = ({
             marginRight: '8px',
           }}
         />
-        {name}
+        <span style={{ paddingTop: '6px' }}>{name}</span>
       </ProfileButton>
       <DropdownContent isOpen={isOpen} ref={dropdownRef}>
         <Dropdown
           logout={logout}
           ChangePassword={ChangePassword}
           managerdetails={managerdetails}
+          personaldetails={personaldetails}
+          name={name}
         />
       </DropdownContent>
     </ProfileDropdownContainer>
   );
 };
 
-const Dropdown = ({ logout, ChangePassword, managerdetails }) => {
+// const Dropdown = ({ logout, ChangePassword, managerdetails, name }) => {
+//   return (
+//       if (name === "SuperAdmin"){
+//     <>
+//       <InteractiveMenuItem onClick={managerdetails}>
+//         <MenuItemText>Personal Info</MenuItemText>
+//         <Icon src={arrow} alt="Personal Info Icon" />
+//       </InteractiveMenuItem>
+//       <InteractiveMenuItem onClick={ChangePassword}>
+//         <MenuItemText>Change Password</MenuItemText>
+//         <Icon src={arrow} alt="Change Password Icon" />
+//       </InteractiveMenuItem>
+//       <InteractiveMenuItem onClick={logout}>
+//         <MenuItemText>Log Out</MenuItemText>
+//         <Icon src={arrow} alt="Log Out Icon" />
+//       </InteractiveMenuItem>
+//       <Separator />
+//       <PrivacyPolicy>Privacy Policy</PrivacyPolicy>
+//     </>
+//       }
+//   );
+// };
+
+const Dropdown = ({
+  logout,
+  ChangePassword,
+  managerdetails,
+  name,
+  personaldetails,
+}) => {
   return (
     <>
-      <InteractiveMenuItem onClick={managerdetails}>
-        <MenuItemText>Personal Info</MenuItemText>
-        <Icon src={arrow} alt="Personal Info Icon" />
-      </InteractiveMenuItem>
-      <InteractiveMenuItem onClick={ChangePassword}>
-        <MenuItemText>Change Password</MenuItemText>
-        <Icon src={arrow} alt="Change Password Icon" />
-      </InteractiveMenuItem>
-      <InteractiveMenuItem onClick={logout}>
-        <MenuItemText>Log Out</MenuItemText>
-        <Icon src={arrow} alt="Log Out Icon" />
-      </InteractiveMenuItem>
-      <Separator />
-      <PrivacyPolicy>Privacy Policy</PrivacyPolicy>
+      {name === 'SuperAdmin' ? (
+        <>
+          <InteractiveMenuItem onClick={managerdetails}>
+            <MenuItemText>Personal Info</MenuItemText>
+            <Icon src={arrow} alt="Personal Info Icon" />
+          </InteractiveMenuItem>
+          <InteractiveMenuItem onClick={ChangePassword}>
+            <MenuItemText>Change Password</MenuItemText>
+            <Icon src={arrow} alt="Change Password Icon" />
+          </InteractiveMenuItem>
+          <InteractiveMenuItem onClick={logout}>
+            <MenuItemText>Log Out</MenuItemText>
+            <Icon src={arrow} alt="Log Out Icon" />
+          </InteractiveMenuItem>
+          <Separator />
+          <PrivacyPolicy>Privacy Policy</PrivacyPolicy>
+        </>
+      ) : (
+        <>
+          <InteractiveMenuItem onClick={personaldetails}>
+            <MenuItemText>Personal Details</MenuItemText>
+            <Icon src={arrow} alt="Company Info Icon" />
+          </InteractiveMenuItem>
+          <InteractiveMenuItem onClick={managerdetails}>
+            <MenuItemText>Company Info</MenuItemText>
+            <Icon src={arrow} alt="Personal Info Icon" />
+          </InteractiveMenuItem>
+          <InteractiveMenuItem onClick={ChangePassword}>
+            <MenuItemText>Change Password</MenuItemText>
+            <Icon src={arrow} alt="Change Password Icon" />
+          </InteractiveMenuItem>
+          <InteractiveMenuItem onClick={logout}>
+            <MenuItemText>Log Out</MenuItemText>
+            <Icon src={arrow} alt="Log Out Icon" />
+          </InteractiveMenuItem>
+          <Separator />
+          <PrivacyPolicy>Privacy Policy</PrivacyPolicy>
+        </>
+      )}
     </>
   );
 };

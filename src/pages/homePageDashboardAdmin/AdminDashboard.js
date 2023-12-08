@@ -10,6 +10,8 @@ import NoOrganisation from '../manager/EmptyOrganisation.js';
 import CreateOrganizationsAdmin from '../admin/CreateOrganizationsAdmin.js';
 import LogoutPopout from '../../components/logout/Logout.js';
 import ChangePassword from '../ChangePassword.js';
+import AddManager2 from '../manager/AddManagerFom.js';
+import { useNavigate } from 'react-router-dom';
 
 function AdminDashBoard() {
   const [managers, setManagers] = useState([]);
@@ -17,6 +19,23 @@ function AdminDashBoard() {
   const itemsPerPage = 5;
   const [totalItems, setTotalItems] = useState(0);
   const [step, setStep] = useState(0);
+  const navigate = useNavigate();
+  var userid = localStorage.getItem('userId');
+
+  if (userid === null) {
+    console.log('userId is null');
+    navigate('/regularlogin');
+  }
+
+  var userole = localStorage.getItem('userRole');
+  if (userole !== 'SuperAdmin') {
+    navigate('/managerdashboard');
+  }
+  console.log('userRole ' + userole);
+
+  const handleCreateOrganization = () => {
+    setStep(7);
+  };
 
   const getManagers = async () => {
     try {
@@ -55,7 +74,7 @@ function AdminDashBoard() {
             </div>
 
             <div>
-              <div className="card">
+              <div className="cardd">
                 <div className="graphwork">
                   <div className="card4">
                     <h1 className="active">ACTIVITIES</h1>
@@ -96,9 +115,14 @@ function AdminDashBoard() {
           </>
         )}
         {step === 1 && <NoOrganisation />}
-        {step === 2 && <CreateOrganizationsAdmin />}
+        {step === 2 && (
+          <CreateOrganizationsAdmin
+            handleCreateOrganization={handleCreateOrganization}
+          />
+        )}
         {step === 5 && <LogoutPopout />}
         {step === 6 && <ChangePassword />}
+        {step === 7 && <AddManager2 />}
       </>
     </section>
   );

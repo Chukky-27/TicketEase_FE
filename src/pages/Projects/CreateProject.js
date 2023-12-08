@@ -82,6 +82,7 @@ const CreateProject = ({ boardId, handleViewAllProjecs }) => {
     // Reset previous errors
     setTitleError('');
     setDescriptionError('');
+    console.log('Created board Id', localStorage.getItem('boardid'));
 
     // Validate title
     if (!title) {
@@ -109,13 +110,14 @@ const CreateProject = ({ boardId, handleViewAllProjecs }) => {
     const data = {
       title,
       description,
-      boardId,
     };
 
     try {
       // Make a POST request to your API endpoint
       const response = await fetch(
-        `https://localhost:7075/Project/AddProject/${boardId}`,
+        `https://localhost:7075/Project/AddProject/${localStorage.getItem(
+          'boardid'
+        )}`,
         {
           method: 'POST',
           headers: {

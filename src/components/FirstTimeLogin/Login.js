@@ -9,7 +9,6 @@ import image from './Login.png';
 import eyeIcon from './eyeIcon.svg';
 import { VscEyeClosed, VscEye } from 'react-icons/vsc';
 
-
 const Container = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -49,19 +48,18 @@ const LoginToYourAccount = styled.h3`
 const StyledLabel = styled.label`
   text-align: left;
   padding: 0.25rem 0;
-  color: #505F98;
+  color: #505f98;
 `;
 
 const StyledInputContainer = styled.div`
   position: relative;
 `;
 
-
 const StyledInput = styled.input`
   border: none;
   padding: 20px;
   border-radius: 4px;
-  color: #505F98;
+  color: #505f98;
   display: block;
   margin-bottom: 3px;
   width: 75%;
@@ -85,16 +83,16 @@ const PasswordWarning = styled.h6`
   font-style: normal;
   font-weight: normal;
   font-size: 12px;
-  color: #505F98;
+  color: #505f98;
 `;
 
 const StyledButton = styled.button`
   border: none;
-  background-color: #505F98;
+  background-color: #505f98;
   padding: 20px;
   border-radius: 4px;
   cursor: pointer;
-  color: #F6F6F6;
+  color: #f6f6f6;
   height: 45px;
   width: 75%;
 `;
@@ -119,7 +117,6 @@ const Login = () => {
       );
       console.log(response);
 
-
       if (response.data.statusCode === 200) {
         const token = response.data.data;
         console.log(token);
@@ -130,7 +127,7 @@ const Login = () => {
           icon: 'success',
           title: 'Login successful!',
           showConfirmButton: false,
-          timer: 1500, 
+          timer: 1500,
           position: 'top-end',
         });
       } else {
@@ -178,11 +175,11 @@ const Login = () => {
   return (
     <Container>
       <FormContainer>
-      <LogoContainer>
-        <Link to="/Footer-header">
-          <Logo src={TicketEaseLogo} alt="TicketEaseLogo" />
-        </Link>
-      </LogoContainer>
+        <LogoContainer>
+          <Link to="/Footer-header">
+            <Logo src={TicketEaseLogo} alt="TicketEaseLogo" />
+          </Link>
+        </LogoContainer>
 
         <LoginToYourAccount>Login to your account</LoginToYourAccount>
         <form onSubmit={handleSubmit}>
@@ -194,7 +191,7 @@ const Login = () => {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
-           <StyledLabel htmlFor="password">Password</StyledLabel>
+          <StyledLabel htmlFor="password">Password</StyledLabel>
           <StyledInputContainer>
             <StyledInput
               type={showPassword ? 'text' : 'password'}
@@ -217,7 +214,12 @@ const Login = () => {
         </form>
       </FormContainer>
       <div className="FirstLoginImagery frame">
-        <img src={image} alt="" className="Firstimage" style={{ width: '85%', height: '85%'}}/>
+        <img
+          src={image}
+          alt=""
+          className="Firstimage"
+          style={{ width: '85%', height: '85%' }}
+        />
       </div>
     </Container>
   );

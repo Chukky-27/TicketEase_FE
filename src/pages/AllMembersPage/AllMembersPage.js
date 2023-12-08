@@ -13,8 +13,10 @@ const AllMembers = () => {
   const getMembers = async () => {
     try {
       const res = await AxiosInstance.get(
-        // `/User/get-Users-By-ManagerId?managerId=${localStorage.getItem('mangerId')}&page=${currentPage}&perPage=${itemsPerPage}`
-        `/User/get-Users-By-ManagerId?managerId=6ba586e7-df76-490b-8216-8930991c68ab&page=${currentPage}&perPage=${itemsPerPage}`
+        `/User/get-Users-By-ManagerId?managerId=${localStorage.getItem(
+          'userId'
+        )}&page=${currentPage}&perPage=${itemsPerPage}`
+        // `/User/get-Users-By-ManagerId?managerId=6db01435-a30c-44ae-9e23-95e1fecf0180&page=${currentPage}&perPage=${itemsPerPage}`
       );
       // console.log('API Response:', res.data);
       const { data, totalCount } = res.data;
@@ -44,14 +46,16 @@ const AllMembers = () => {
           </S.Leftarrow>
 
           <S.Show>
-            <S.MainTop>All Registered Members</S.MainTop>
-            <S.Sort>
+            <S.MainTop style={{ whiteSpace: 'nowrap' }}>
+              All Registered Members
+            </S.MainTop>
+            {/* <S.Sort>
               Sort By{' '}
               <select>
                 <option value="all">All</option>
                 <option value="Newest">Newest</option>
               </select>
-            </S.Sort>
+            </S.Sort> */}
           </S.Show>
 
           {/* Updated prop name from 'companies' to 'data' */}

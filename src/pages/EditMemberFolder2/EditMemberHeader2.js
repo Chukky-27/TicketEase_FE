@@ -23,11 +23,11 @@ const Ellipse = styled.div`
 const Description = styled.div`
   padding-left: 26%;
   margin-left: 150px;
-  margin-top: -70px;
+  margin-top: 3em;
   //
 `;
 
-const EditMemberHeader = () => {
+const EditMemberHeader2 = () => {
   const inputRef = useRef(null);
   const [image, setImage] = useState(null);
 
@@ -49,7 +49,7 @@ const EditMemberHeader = () => {
   return (
     <div>
       <Header></Header>
-      <div onClick={handleImageClick}>
+      {/* <div onClick={handleImageClick}>
         {image ? (
           <img
             src={image}
@@ -80,13 +80,13 @@ const EditMemberHeader = () => {
           onChange={handleImageChange}
           style={{ display: 'none' }}
         />
-      </div>
+      </div> */}
       <Description>
-        <h3> Manager Details</h3>
+        <h3> Personal Details</h3>
         <p> Edit and Save the Below Details</p>
       </Description>
     </div>
   );
 };
 
-export default EditMemberHeader;
+export default EditMemberHeader2;

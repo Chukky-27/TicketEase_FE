@@ -113,8 +113,10 @@ function CreateTicket({ handleViewTickets }) {
     assignedTo: '',
   });
 
-  const userId = '54e92c8f-e076-4cf6-b65a-6cedced31743';
-  const projectId = '00598ed2-da89-4531-aa4b-f736027aecd0';
+  const userId = localStorage.getItem('Id');
+  console.log(userId);
+  const projectId = localStorage.getItem('projectid');
+  console.log(projectId);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -209,9 +211,9 @@ function CreateTicket({ handleViewTickets }) {
               onChange={handleChange}
               name="status"
             >
-              <option value="0">Completed</option>
-              <option value="1">Pending</option>
-              <option value="2">Incomplete</option>
+              <option value="0">To Do</option>
+              <option value="1">In Progress</option>
+              <option value="2">Completed</option>
             </StyledSelect>
 
             <StyledLabel>Priority:</StyledLabel>
@@ -220,9 +222,9 @@ function CreateTicket({ handleViewTickets }) {
               onChange={handleChange}
               name="priority"
             >
-              <option value="0">High</option>
+              <option value="0">Low</option>
               <option value="1">Medium</option>
-              <option value="2">Low</option>
+              <option value="2">High</option>
             </StyledSelect>
 
             <StyledLabel>Assigned To:</StyledLabel>

@@ -118,13 +118,18 @@ function AddManager2() {
       );
 
       if (response.status === 200) {
-        Swal.fire({
-          icon: 'success',
-          title: 'Email sent successfully!',
-          showConfirmButton: false,
-          timer: 1500, // Automatically close after 1.5 seconds
-          position: 'top-end',
-        });
+        Swal.fire(
+          {
+            icon: 'success',
+            title: 'Email sent successfully!',
+            showConfirmButton: false,
+            timer: 1500, // Automatically close after 1.5 seconds
+            position: 'top-end',
+          },
+          function () {
+            navigate('/admindashboard');
+          }
+        );
       } else {
         Swal.fire({
           icon: 'error',

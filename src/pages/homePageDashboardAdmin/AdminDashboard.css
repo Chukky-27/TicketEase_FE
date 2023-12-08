@@ -63,9 +63,17 @@ body {
   line-height: normal;
   padding-top: 10px;
 }
-
 .card {
   width: 118px;
+  height: 319px;
+  flex-shrink: 0;
+  border-radius: 4px;
+  background: #fff;
+  margin-top: 30px;
+  margin-left: 23%;
+}
+.cardd {
+  width: 730px;
   height: 319px;
   flex-shrink: 0;
   border-radius: 4px;

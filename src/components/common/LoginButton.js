@@ -24,7 +24,7 @@ const Span = styled.span`
 function LoginButton() {
   return (
     <Container>
-      <StyledLink to="/login">
+      <StyledLink to="/Regularlogin">
         <Span>&#129120;</Span>Back to Login
       </StyledLink>
     </Container>

@@ -20,7 +20,7 @@ const Input = styled.input`
   border: none;
   height: 48px;
   border-radius: 10px;
-
+  padding: 10px;
   &::placeholder {
     padding-left: 4m0px;
     color: rgba(151, 151, 151, 1);
@@ -53,43 +53,52 @@ const Button = styled.button`
   margin: 16px auto 16px auto;
 `;
 
-const EditMemberData = () => {
-  const [companyName, setCompanyName] = useState('');
-  const [businessEmail, setBusinessEmail] = useState('');
-  const [businessPhone, setBusinessPhone] = useState('');
-  const [companyAddress, setCompanyAddress] = useState('');
+const EditMemberData2 = () => {
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [email, setEmail] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
+  const [gender, setGender] = useState('');
+  const [address, setAddress] = useState('');
   const [state, setState] = useState('');
 
   const getIsFormValid = () => {
     return (
-      companyName &&
-      validateEmail(businessEmail) &&
-      businessPhone &&
-      companyAddress &&
+      firstName &&
+      lastName &&
+      validateEmail(email) &&
+      phoneNumber &&
+      gender &&
+      address &&
       state
     );
   };
 
   const clearForm = () => {
-    setCompanyName('');
-    setBusinessEmail('');
-    setBusinessPhone('');
-    setCompanyAddress('');
+    setFirstName('');
+    setLastName('');
+    setPhoneNumber('');
+    setGender('');
+    setAddress('');
     setState('');
   };
 
   const fetchData = async () => {
     try {
       const response = await AxiosInstance.get(
-        `/managers/GetById?id=${localStorage.getItem('userId')}`
+        `/User/${localStorage.getItem('Id')}`
       );
-      const managerData = response.data.data;
-      console.log(response.data.statusCode);
-      if (response.data.statusCode === 200) {
-        setCompanyName(managerData.companyName);
-        setBusinessEmail(managerData.businessEmail);
-        setBusinessPhone(managerData.businessPhone);
-        setCompanyAddress(managerData.companyAddress);
+      console.log(response);
+      const managerData = response.data;
+      console.log(response.status);
+      console.log(managerData.email);
+      if (response.status === 200) {
+        setFirstName(managerData.firstName);
+        setLastName(managerData.lastName);
+        setEmail(managerData.email);
+        setPhoneNumber(managerData.phoneNumber);
+        setGender(managerData.gender);
+        setAddress(managerData.address);
         setState(managerData.state);
       } else {
         clearForm();
@@ -109,7 +118,7 @@ const EditMemberData = () => {
   }, []);
 
   const handleBusinessPhoneChange = (e) => {
-    setBusinessPhone(e.target.value);
+    setPhoneNumber(e.target.value);
   };
 
   const handleFormSubmit = async (e) => {
@@ -118,22 +127,20 @@ const EditMemberData = () => {
     if (getIsFormValid()) {
       try {
         const response = await AxiosInstance.put(
-          `/managers/Edit?id=${localStorage.getItem('userId')}`,
+          `/User/update/${localStorage.getItem('Id')}`,
           {
-            companyName,
-            businessEmail,
-            businessPhone,
-            companyAddress,
+            firstName,
+            lastName,
+            email,
+            phoneNumber,
+            gender,
+            address,
             state,
           }
         );
         console.log(response);
-        console.log(response.data.result.statusCode);
-        if (
-          response.data.result.statusCode === 200 ||
-          response.data.result.statusCode === 201
-        ) {
-          console.log('Data successfully saved to the database');
+
+        if (response.status === 200 || response.status === 201) {
           Swal.fire({
             icon: 'success',
             title: 'Data updated successfully',
@@ -151,8 +158,6 @@ const EditMemberData = () => {
             position: 'top-end',
           });
           console.error('API Error:', response.status);
-
-          console.error('API Error:', response.data.statusCode);
         }
       } catch (error) {
         console.error('API Error:', error.message);
@@ -174,27 +179,32 @@ const EditMemberData = () => {
           <Container>
             <div>
               <Field className="Field">
-                <Label>Company Name</Label>
+                <Label>First Name</Label>
                 <Input
-                  value={companyName}
-                  onChange={(e) => setCompanyName(e.target.value)}
-                  placeholder="Company Name"
+                  value={firstName}
+                  onChange={(e) => setFirstName(e.target.value)}
+                  placeholder="First Name"
+                />
+                <ImageIcon src={Edit} alt="Edit Icon" />
+              </Field>
+              <Field className="Field">
+                <Label>Last Name</Label>
+                <Input
+                  value={lastName}
+                  onChange={(e) => setLastName(e.target.value)}
+                  placeholder="Last Name"
                 />
                 <ImageIcon src={Edit} alt="Edit Icon" />
               </Field>
 
               <Field className="Field">
-                <Label>Company Email</Label>
-                <Input
-                  value={businessEmail}
-                  placeholder="Business Email"
-                  readOnly
-                />
+                <Label> Email</Label>
+                <Input value={email} placeholder=" Email" readOnly />
               </Field>
               <Field className="Field">
-                <Label>Contact Phone</Label>
+                <Label> Phone Number</Label>
                 <Input
-                  value={businessPhone}
+                  value={phoneNumber}
                   onChange={handleBusinessPhoneChange}
                   placeholder="Contact Phone"
                 />
@@ -204,11 +214,11 @@ const EditMemberData = () => {
 
             <div>
               <Field className="Field">
-                <Label>Address</Label>
+                <Label>Gender</Label>
                 <Input
-                  value={companyAddress}
-                  onChange={(e) => setCompanyAddress(e.target.value)}
-                  placeholder="Address"
+                  value={gender}
+                  onChange={(e) => setGender(e.target.value)}
+                  placeholder="Gender"
                 />
                 <ImageIcon src={Edit} alt="Edit Icon" />
               </Field>
@@ -219,6 +229,16 @@ const EditMemberData = () => {
                   value={state}
                   onChange={(e) => setState(e.target.value)}
                   placeholder="State"
+                />
+                <ImageIcon src={Edit} alt="Edit Icon" />
+              </Field>
+
+              <Field className="Field">
+                <Label>Address</Label>
+                <Input
+                  value={address}
+                  onChange={(e) => setAddress(e.target.value)}
+                  placeholder="Address"
                 />
                 <ImageIcon src={Edit} alt="Edit Icon" />
               </Field>
@@ -237,4 +257,4 @@ const EditMemberData = () => {
   );
 };
 
-export default EditMemberData;
+export default EditMemberData2;

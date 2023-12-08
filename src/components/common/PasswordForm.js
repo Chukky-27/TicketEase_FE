@@ -116,12 +116,12 @@ function PasswordForm() {
     } catch (error) {
       console.error('Token validation error:', error);
 
-      Swal.fire({
-        icon: 'error',
-        title: 'Error',
-        text: 'An unexpected error occurred: ' + error.message,
-        confirmButtonText: 'OK',
-      });
+      // Swal.fire({
+      //   icon: 'error',
+      //   title: 'Error',
+      //   text: 'An unexpected error occurred: ' + error.message,
+      //   confirmButtonText: 'OK',
+      // });
       return false;
     }
   };

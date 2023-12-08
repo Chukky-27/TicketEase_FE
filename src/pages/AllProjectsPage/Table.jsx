@@ -43,12 +43,18 @@ const Table = ({
     padding: '3px 8px',
     cursor: 'pointer',
   };
+
+  const handleProjectId = (itemId) => {
+    // Save item.id in localStorage
+    localStorage.setItem('projectid', itemId);
+  };
+
   return (
     <div>
       {/* Table content */}
       <table
         style={{
-          width: '100%',
+          width: '75em',
           borderCollapse: 'collapse',
           marginTop: '10px',
           background: '#FFF',
@@ -56,34 +62,58 @@ const Table = ({
       >
         <thead>
           <tr style={{ background: '#FAFAFA', color: '#444' }}>
-            <th style={tableCellStyle}>SN</th>
-            <th style={tableCellStyle}>Board ID</th>
-            <th style={tableCellStyle}>Title</th>
-            <th style={tableCellStyle}>Description</th>
-            <th style={tableCellStyle}></th>
+            <th style={{ tableCellStyle, width: '4em' }}>SN</th>
+            {/* <th style={tableCellStyle}>Board ID</th>
+            <th style={tableCellStyle}>Project ID</th> */}
+            <th style={{ tableCellStyle, width: '20em' }}>Title</th>
+            <th style={{ tableCellStyle, width: '20em' }}>Description</th>
+            <th style={{ tableCellStyle, width: '10em' }}></th>
           </tr>
         </thead>
 
         <tbody>
           {console.log('Data:', data)}
+
           {data &&
             data.map((item, index) => (
               <tr key={item.id}>
                 <td style={tableCellStyle}>
                   {(currentPage - 1) * itemsPerPage + index + 1}
                 </td>
-                <td style={tableCellStyle}>{item.boardId}</td>
+                {/* <td style={tableCellStyle}>{item.boardId}</td>
+                <td style={tableCellStyle}>{item.id}</td> */}
                 <td style={tableCellStyle}>{item.title}</td>
                 <td style={tableCellStyle}>{item.description}</td>
                 <td style={tableCellStyle}>
                   <button
                     // onClick={() => handleViewClick(item)}
-                    style={viewButtonStyle}
-                    onClick={handleViewTickets}
+                    style={{
+                      backgroundColor: '#505F98',
+                      cursor: 'pointer',
+                      border: '1px solid ',
+                      padding: '3px 8px',
+                      color: '#FFF',
+                    }}
+                    onClick={() => {
+                      handleViewTickets();
+                      handleProjectId(item.id);
+                    }}
                   >
                     View Tickets
                   </button>
-                  <button onClick={handleCreateTicket} style={viewButtonStyle}>
+                  <button
+                    onClick={() => {
+                      handleCreateTicket();
+                      handleProjectId(item.id);
+                    }}
+                    style={{
+                      backgroundColor: '#505F98',
+                      cursor: 'pointer',
+                      border: '1px solid ',
+                      padding: '3px 8px',
+                      color: '#FFF',
+                    }}
+                  >
                     Create Ticket
                   </button>
                 </td>
@@ -102,7 +132,12 @@ const Table = ({
       >
         <button
           onClick={() => changePage('prev')}
-          style={paginationButtonStyle}
+          style={{
+            backgroundColor: '#505F98',
+            cursor: 'pointer',
+            border: 'none',
+            padding: '3px 8px',
+          }}
           disabled={currentPage === 1}
         >
           Prev
@@ -125,6 +160,9 @@ const Table = ({
                     ...paginationButtonStyle,
                     fontWeight: currentPage === index + 1 ? 'bold' : 'normal',
                     cursor: 'pointer',
+                    backgroundColor: '#505F98',
+                    padding: '3px 8px',
+                    border: 'none',
                   }}
                 >
                   {index + 1}
@@ -136,7 +174,12 @@ const Table = ({
 
         <button
           onClick={() => changePage('next')}
-          style={paginationButtonStyle}
+          style={{
+            backgroundColor: '#505F98',
+            cursor: 'pointer',
+            border: 'none',
+            padding: '3px 8px',
+          }}
           disabled={currentPage === Math.ceil(totalItems / itemsPerPage)}
         >
           Next

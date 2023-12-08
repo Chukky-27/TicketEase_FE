@@ -23,6 +23,7 @@ body {
   height: 66.64px;
   top: -4px;
   left: 356px;
+  margin-top: 45px;
 }
 
 .card1 {
@@ -75,7 +76,6 @@ body {
 }
 
 .form-input {
-  padding: 10px;
   width: 494px;
   height: 48px;
   top: 305px;
@@ -88,7 +88,6 @@ body {
 }
 
 .form-textarea {
-  padding: 10px;
   width: 494px;
   height: 157px;
   top: 505px;

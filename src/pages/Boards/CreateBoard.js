@@ -103,7 +103,7 @@ function AddManager({ handleBoardMain }) {
   const [steps] = useState(0);
   const [formData, setFormData] = useState({
     Name: '',
-    managerId: '',
+    managerId: localStorage.getItem('userId'),
     description: '',
   });
   const navigate = useNavigate();
@@ -112,7 +112,7 @@ function AddManager({ handleBoardMain }) {
     e.preventDefault();
     console.log('Handling submit...');
 
-    if (!formData.Name || !formData.managerId) {
+    if (!formData.Name) {
       console.error('Please fill in all required fields.');
       return;
     }
@@ -201,11 +201,14 @@ function AddManager({ handleBoardMain }) {
                       setFormData({ ...formData, Name: e.target.value })
                     }
                   />
-                  <StyledLabel>Manager's Id:</StyledLabel>
+                  <StyledLabel style={{ display: 'none' }}>
+                    Manager's Id:
+                  </StyledLabel>
                   <StyledInput
+                    style={{ display: 'none' }}
                     type="text"
                     placeholder=""
-                    value={formData.managerId}
+                    value={localStorage.getItem('userId')}
                     onChange={(e) =>
                       setFormData({ ...formData, managerId: e.target.value })
                     }

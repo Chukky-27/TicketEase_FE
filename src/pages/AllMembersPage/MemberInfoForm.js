@@ -63,19 +63,21 @@ const MemberInfoForm = ({ handleAllMembers }) => {
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [managerId, setManagerId] = useState('');
+  const [managerId, setManagerId] = React.useState(
+    localStorage.getItem('userId')
+  );
 
   const getIsFormValid = () => {
     return firstName && lastName && password && validateEmail(email);
   };
 
-  const clearForm = () => {
-    setFirstName('');
-    setLastName('');
-    setEmail('');
-    setPassword('');
-    setManagerId('');
-  };
+  // const clearForm = () => {
+  //   setFirstName('');
+  //   setLastName('');
+  //   setEmail('');
+  //   setPassword('');
+  //   setManagerId('');
+  // };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -178,12 +180,12 @@ const MemberInfoForm = ({ handleAllMembers }) => {
                   placeholder="Email"
                 />
               </Field>
-              <Field className="Field">
+              <Field className="Field" style={{ display: 'none' }}>
                 <Label>ManagerId</Label>
                 <Input
                   value={managerId}
                   onChange={(e) => {
-                    setManagerId(e.target.value);
+                    setManagerId(localStorage.getItem('userId'));
                   }}
                   placeholder="manager Id"
                 />
@@ -191,7 +193,7 @@ const MemberInfoForm = ({ handleAllMembers }) => {
             </div>
           </Container>
           <Button type="submit" disabled={!getIsFormValid()}>
-            Save
+            Create
           </Button>
         </Fieldset>
       </form>

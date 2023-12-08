@@ -96,7 +96,11 @@ function CreateBoardEmptyManager({ handleBoardMain }) {
                   <StyledButton
                     className="btn"
                     onClick={() => setsteps(1)}
-                    style={{ background: '#505f98', width: '270px' }}
+                    style={{
+                      background: '#505f98',
+                      width: '270px',
+                      cursor: 'pointer',
+                    }}
                   >
                     <img src={AddIcon} alt="AddIcon" />
                     Create Board

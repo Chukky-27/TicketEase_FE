@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const InProgress1 = styled.div`
   position: relative;
@@ -8,7 +8,7 @@ const InProgress1 = styled.div`
 `;
 const Medium = styled.div`
   position: relative;
-  font-size:11px
+  font-size: 11px;
 `;
 const Prioritymedium = styled.div`
   border-radius: var(--br-xl);
@@ -26,7 +26,6 @@ const AddMoreUser = styled.div`
   font-weight: 500;
   display: inline-block;
   width: 100%;
-  
 `;
 const Tagmobile = styled.div`
   border-radius: var(--br-9xs);
@@ -40,7 +39,7 @@ const Tagmobile = styled.div`
 `;
 const Tagweb = styled.div`
   border-radius: var(--br-9xs);
-  background-color: #505F98;
+  background-color: #505f98;
   overflow: hidden;
   display: flex;
   flex-direction: row;
@@ -80,7 +79,7 @@ const Cardnormal = styled.div`
   background-color: var(--color-white);
   border: 1px solid var(--support-dark-grey);
   display: flex;
-  width:100%;
+  width: 100%;
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
@@ -108,7 +107,6 @@ const Tagmobile1 = styled.div`
   padding: var(--padding-9xs);
 `;
 
-
 const Bod = styled.div`
   /* fonts */
   --font-poppins: Poppins;
@@ -130,7 +128,7 @@ const Bod = styled.div`
   --color-darkseagreen: #b8ebb0;
   --color-burlywood: #f0ca81;
 
-  width:95%;
+  width: 95%;
   /* Gaps */
   --gap-5xs: 8px;
 
@@ -144,7 +142,7 @@ const Bod = styled.div`
 `;
 const Low = styled.div`
   position: relative;
-  font-size:12px;
+  font-size: 12px;
 `;
 
 const Priorityhigh = styled.div`
@@ -161,23 +159,22 @@ const Priorityhigh = styled.div`
 const Title = styled.span`
   overflow: hidden;
   align-items: right;
-  float:right;
+  float: right;
   justify-content: flex-end;
-  font-weight:bold;
-  font-size:12px;
+  font-weight: bold;
+  font-size: 12px;
 `;
 const Header = styled.div`
   display: flex;
   justify-content: space-between;
-  width:100%;
-
+  width: 100%;
 `;
 const TicketCard = (props) => {
-  const { title, priority, description,date,reference } = props;
+  const { title, priority, description, date, reference } = props;
   const PriorityComponent =
-    priority === "Low"
+    priority === 'Low'
       ? Prioritylow
-      : priority === "Medium"
+      : priority === 'Medium'
       ? Prioritymedium
       : Priorityhigh;
 
@@ -193,19 +190,26 @@ const TicketCard = (props) => {
 
         <AddMoreUser>{description}</AddMoreUser>
         <TagmobileParent>
-          
           <Tagweb>
             <Medium>{reference}</Medium>
           </Tagweb>
         </TagmobileParent>
-        
-        <div style={{display:'flex', justifyContent:'space-between', width:'100%'}}>
+
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            width: '100%',
+          }}
+        >
           <Mar32020>{date}</Mar32020>
-           <Useruser01Parent>
-          <Useruser01Icon alt="" src="useruser-2.svg" />
-        </Useruser01Parent>
+          <Useruser01Parent>
+            <Useruser01Icon
+              alt=""
+              src="https://icon-library.com/images/no-profile-picture-icon/no-profile-picture-icon-2.jpg"
+            />
+          </Useruser01Parent>
         </div>
-       
       </Cardnormal>
     </Bod>
   );

@@ -121,6 +121,7 @@ export const Component = ({
   className,
   logout,
   ChangePassword,
+  personaldetails,
   managerdetails,
   overlapGroupClassName,
 }) => {
@@ -136,12 +137,13 @@ export const Component = ({
         <div className="img-wrapper">
           <Settings />
         </div>
-        <div className="frame-2">
+        <div className="frame-2" style={{ marginTop: '10px' }}>
           <ProfileDropdown
             logout={logout}
             ChangePassword={ChangePassword}
             managerdetails={managerdetails}
-            name="Goliath"
+            personaldetails={personaldetails}
+            name={localStorage.getItem('userRole')}
           />
         </div>
       </div>

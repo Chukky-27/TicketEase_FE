@@ -47,7 +47,12 @@ export const Logo = () => {
         <StyledTextWrapper>TICKET EASE</StyledTextWrapper>
         <StyledOverlapWrapper>
           <Link to="/Footer-header">
-            <img className="logo" alt="logo" src={logo} />
+            <img
+              className="logo"
+              alt="logo"
+              src={logo}
+              style={{ marginTop: 0 }}
+            />
           </Link>
         </StyledOverlapWrapper>
       </StyledGroup>

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import AxiosInstance from '../../Request/AxiosInstance';
 
-const MergedComponent = () => {
+const MergedComponent = ({ handleCreateOrganization }) => {
   return (
     <StyledDiv1>
       <StyledDiv2 style={{ marginLeft: '7.5em' }}>Organizations</StyledDiv2>
@@ -11,6 +11,7 @@ const MergedComponent = () => {
         alt=""
         src="create_organisation.svg"
         style={{ cursor: 'pointer', marginRight: '-2em' }}
+        onClick={handleCreateOrganization}
       />
     </StyledDiv1>
   );
@@ -19,11 +20,16 @@ const MergedComponent = () => {
 const CardContainer = ({ organizationName }) => {
   const navigate = useNavigate();
   const [memberPhotos, setMemberPhotos] = useState([]);
+  const [totalMembersCount, setTotalMembersCount] = useState(0);
 
   // Function to fetch member photos
   const fetchMemberPhotos = async () => {
     try {
-      const response = await AxiosInstance.get('/user/get-Users-By-Pagination');
+      const response = await AxiosInstance.get(
+        `/User/get-Users-By-ManagerId?managerId=${localStorage.getItem(
+          'userId'
+        )}`
+      );
       console.log(response.data); // Log the response to inspect its structure
 
       // Assuming the images are nested under a property like 'data' or 'members'
@@ -40,6 +46,7 @@ const CardContainer = ({ organizationName }) => {
         const firstFourPhotos = photos.slice(0, 4);
 
         setMemberPhotos(firstFourPhotos);
+        setTotalMembersCount(photos.length);
 
         // Log the actual images
         console.log('Fetched Images:', firstFourPhotos);
@@ -87,7 +94,7 @@ const CardContainer = ({ organizationName }) => {
             <StyledDiv14>
               {memberPhotos.length > 2 && (
                 <StyledViewAllMembersButton
-                  onClick={() => console.log('View all Members clicked')}
+                // onClick={() => console.log('View all Members clicked')}
                 >
                   View all Members
                 </StyledViewAllMembersButton>
@@ -96,7 +103,7 @@ const CardContainer = ({ organizationName }) => {
             </StyledDiv14>
           </StyledDiv11>
           <StyledDiv15>
-            <StyledDiv16>10</StyledDiv16>
+            <StyledDiv16>{totalMembersCount}</StyledDiv16>
           </StyledDiv15>
         </StyledDiv10>
       </StyledDiv8>
@@ -111,7 +118,8 @@ const StyledDiv1 = styled.div`
   margin-left: 10em;
   gap: 20px;
   padding-right: 80px;
-  margin-top: 10em;
+  margin-top: 6em;
+  margin-bottom: -2em;
 
   @media (max-width: 991px) {
     flex-wrap: wrap;

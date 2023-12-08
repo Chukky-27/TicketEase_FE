@@ -37,8 +37,9 @@ const App = () => {
         console.error(`Error fetching data from ${url}:`, error);
       }
     };
-    const apiUrl1 =
-      'https://localhost:7075/api/Ticket/project/bfcd5980-ab10-441c-b8a5-e857bb3eae98?page=1&perPage=5';
+    const apiUrl1 = `https://localhost:7075/api/Ticket/project/${localStorage.getItem(
+      'projectid'
+    )}?page=1&perPage=5000`;
 
     fetchData(apiUrl1);
   }, []);
@@ -124,7 +125,7 @@ const App = () => {
   return (
     <>
       <ParentDiv onDragOver={dragOver}>
-        <div
+        {/* <div
           style={{
             flex: 1,
             marginTop: '2em',
@@ -133,7 +134,7 @@ const App = () => {
             backgroundColor: 'white',
           }}
         >
-          <div style={{ fontWeight: 'bold', margin: '1em' }}>Pending</div>
+          <div style={{ fontWeight: 'bold', margin: '1em' }}>To Do</div>
 
           {list1.length === 0 ? (
             <div
@@ -141,8 +142,55 @@ const App = () => {
               onDragEnter={(e) => dragEnter(e, 0, 'list1')}
               onDragEnd={dragEnd}
             >
-              {/* Display this div when the list is empty */}
-              No pending tickets to display
+              No pending tickets
+            </div>
+          ) : (
+ 
+            list1.map((item, index) => (
+              <div
+                style={{ marginLeft: '1em', marginBottom: '1em' }}
+                onDragStart={(e) => dragStart(e, index, 'list1')}
+                onDragEnter={(e) => dragEnter(e, index, 'list1')}
+                onDragEnd={dragEnd}
+                key={index}
+                draggable
+              >
+                <TicketCard
+                  reference={item.ticketReference}
+                  date={item.createdAt}
+                  description={item.description}
+                  key={index}
+                  title={item.title}
+                  priority={
+                    item.priority === 0
+                      ? 'Low'
+                      : item.priority === 1
+                      ? 'Medium'
+                      : 'High'
+                  }
+                />
+              </div>
+            ))
+          )}
+        </div> */}
+        <div
+          style={{
+            flex: 1,
+            backgroundColor: 'white',
+            marginBottom: '2em',
+            marginRight: '2em',
+            marginTop: '2em',
+            marginLeft: '20em',
+          }}
+        >
+          <div style={{ fontWeight: 'bold', margin: '1em' }}>To Do</div>
+          {list1.length === 0 ? (
+            <div
+              style={{ margin: '1em' }}
+              onDragEnter={(e) => dragEnter(e, 0, 'list1')}
+              onDragEnd={dragEnd}
+            >
+              No tickets in To Do
             </div>
           ) : (
             // Loop through the list when it is not empty
@@ -173,7 +221,6 @@ const App = () => {
             ))
           )}
         </div>
-
         <div style={{ flex: 1, backgroundColor: 'white', margin: '2em' }}>
           <div style={{ fontWeight: 'bold', margin: '1em' }}>In Progress</div>
           {list2.length === 0 ? (

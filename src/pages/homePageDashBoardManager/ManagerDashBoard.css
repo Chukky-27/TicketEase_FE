@@ -32,6 +32,15 @@ body {
   margin-left: 23%;
   margin-top: 0%;
 }
+.containe {
+  width: 1100px;
+  height: 97px;
+  flex-shrink: 0;
+  border-radius: 4px;
+  background: #fff;
+  margin-left: 23%;
+  margin-top: 0%;
+}
 .text {
   /* margin-left: 15px; */
   color: #1d2125;
@@ -63,7 +72,7 @@ body {
 }
 
 .card {
-  width: 728px;
+  width: 1100px;
   height: 319px;
   flex-shrink: 0;
   border-radius: 4px;
